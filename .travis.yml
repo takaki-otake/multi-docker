@@ -20,3 +20,15 @@ after_success:
   - docker push swmn/multi-nginx
   - docker push swmn/multi-server
   - docker push swmn/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-northeast-1a
+  app: multi-docker
+  env: Multi-docker-otake-v1-env
+  bucket_name: elasticbeanstalk-ap-northeast-1-085107194442
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
